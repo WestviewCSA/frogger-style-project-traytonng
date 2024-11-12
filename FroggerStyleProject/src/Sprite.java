@@ -17,16 +17,16 @@ public class Sprite{
 	double scaleHeight = 1.0; 		//change to scale image
 
 	public Sprite() {
-		forward 	= getImage("/imgs/"+"forwardFile.png"); //load the image for Tree
-		backward 	= getImage("/imgs/"+"backward.png"); //load the image for Tree
-		left 		= getImage("/imgs/"+"left.png"); //load the image for Tree
-		right 		= getImage("/imgs/"+"right.png"); //load the image for Tree
+		forward 	= getImage("/imgs/"+"LukeBack.png"); //load the image for Tree
+
 
 		//alter these
 		width = 0;
 		height = 0;
 		x = 0;
 		y = 0;
+		
+		
 		vx = 0;
 		vy = 0;
 		
@@ -49,17 +49,6 @@ public class Sprite{
 		switch(dir) {
 		case 0:
 			g2.drawImage(forward, tx, null);
-			break;
-		case 1:
-			g2.drawImage(backward, tx, null);
-
-			break;
-		case 2:
-			g2.drawImage(left, tx, null);
-
-			break;
-		case 3:
-			g2.drawImage(right, tx, null);
 			break;
 		}
 

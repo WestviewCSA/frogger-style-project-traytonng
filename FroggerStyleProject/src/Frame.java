@@ -51,6 +51,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	LOG4 log6 = new LOG4(100, -225); 
 	Luke luke = new Luke(250,485); 
 	DROID droid = new DROID(100,200); 
+	DROID2 droid2 = new DROID2(100,200);
 
 
 
@@ -67,6 +68,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	OtherFrogLog[] row7 = new OtherFrogLog[1]; 
 	LOG4[] row8 = new LOG4[5];
 	DROID[] row9 = new DROID[1]; 
+	DROID2[] row10 = new DROID2[1]; 
 
 
 	
@@ -115,6 +117,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(DROID obj : row9) {
 			obj.paint(g);
 		}
+		
+		for(DROID2 obj : row10) {
+			obj.paint(g); 
+		
+		}
 		/*
 		 * Collision detection 
 		 */
@@ -122,19 +129,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(StormTrooper obj : row5) { 
 			
 		if(obj.coolided(luke)) { 
-			System.out.println("ouch");
+			System.out.println("Skywalker spotted!");
 		}
 		
 		for(OtherStorm obj1 : row1) {
 		
 		if(obj1.coolided(luke)) {
-			System.out.println("ouch!"); 
+			System.out.println("Skywalker spotted!"); 
 		}
 		
 		for(DROID obj2 : row9) {
 			if(obj2.coolided(luke)) {
 				System.out.println("return to training!");
 			}
+			
+		for(DROID2 obj3 : row10) { 
+			if(obj3.coolided(luke)) {
+				System.out.println("return to training!");
+			}
+		}
+			
 		}
 		
 		
@@ -201,7 +215,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i <row9.length; i++) { 
 			row9[i] = new DROID(i*150, 100); 
 		}
-		
+		for(int i = 0; i <row10.length; i++) { 
+			row10[i] = new DROID2(i*150, 100); 
+		}
 		
 		
 		//the cursor image must be outside of the src folder

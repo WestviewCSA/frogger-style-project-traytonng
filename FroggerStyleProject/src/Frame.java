@@ -47,28 +47,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	FrogLog log2 = new FrogLog(100, -200); 
 	LOG3 log3 = new LOG3(100, -200); 
 	LOG3 log4 = new LOG3(100, -200); 
-	OtherFrogLog log5 = new OtherFrogLog(100,-200);
-	LOG4 log6 = new LOG4(100, -225); 
+	OtherFrogLog log5 = new OtherFrogLog(100,-100);
 	Luke luke = new Luke(250,485); 
 	DROID droid = new DROID(100,200); 
 	DROID2 droid2 = new DROID2(100,200);
-
-
-
-
+	Ending bush = new Ending(0,0);
+	WinScreen win = new WinScreen(0,0);
 
 	
 	// a row of LukeScrolling Object
 	OtherStorm[] row1 = new OtherStorm[10];
 	LOG[] row2 = new LOG[5];
-	FrogLog[] row3 = new FrogLog[1]; 
-	LOG3[] row4 = new LOG3[5]; 
+	FrogLog[] row3 = new FrogLog[2]; 
+	LOG3[] row4 = new LOG3[4]; 
 	StormTrooper[] row5 = new StormTrooper[10]; 
-	LOG3[] row6 = new LOG3[5]; 
+	LOG3[] row6 = new LOG3[3]; 
 	OtherFrogLog[] row7 = new OtherFrogLog[1]; 
-	LOG4[] row8 = new LOG4[5];
 	DROID[] row9 = new DROID[1]; 
 	DROID2[] row10 = new DROID2[1]; 
+	Ending[] row11 = new Ending[1]; 
 
 
 	
@@ -80,8 +77,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		
+		
 		Background.paint(g);
 		log.paint(g);
+		bush.paint(g);
 
 		//have the row1 objects paint on the screen!!!!!!
 		//for each obj in row1 
@@ -96,10 +95,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(LOG3 obj : row4) { 
 			obj.paint(g); 
-		}
-		
-		for(LOG4 obj : row8) {
-			obj.paint(g);
 	
 		} 
 		for(StormTrooper obj : row5) { 
@@ -109,8 +104,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g); 
 		} 
 		
-		for(FrogLog obj : row3) { 
-			obj.paint(g);
+		for(FrogLog obj6 : row3) { 
+			obj6.paint(g);
 			
 		} 
 		
@@ -122,31 +117,84 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g); 
 		
 		}
+		
+		for(Ending obj : row11) {
+			obj.paint(g);
+		}
+		
+		
+		//boolean riding = false; 
+		//for (FrogLog obj6: row3) { 
+			
+			//if(obj6.coolided(luke)) {
+			//	luke.setVx(obj6.v);
+			//	riding = true; 
+			//	break;
+		//	}
+		
+		
+	//	if(!riding && luke.y()) < 300) {
+	//	riding = false; 
+		//	luke.setVx(0); 
+		//	luke.x = 250;
+		//	luke.y = 485; 
+			//IF ! riding any luke is in the mist area 
+			//rest back to start 	
+		
+		//} 
+		
+		
 		/*
 		 * Collision detection 
 		 */
+		
 		
 		for(StormTrooper obj : row5) { 
 			
 		if(obj.coolided(luke)) { 
 			System.out.println("Skywalker spotted!");
+				luke = new Luke(250,485); 
 		}
 		
 		for(OtherStorm obj1 : row1) {
 		
 		if(obj1.coolided(luke)) {
 			System.out.println("Skywalker spotted!"); 
+				luke = new Luke(250,485); 
+
 		}
 		
 		for(DROID obj2 : row9) {
 			if(obj2.coolided(luke)) {
 				System.out.println("return to training!");
+					luke = new Luke(250,485); 
+
+		
 			}
 			
 		for(DROID2 obj3 : row10) { 
 			if(obj3.coolided(luke)) {
 				System.out.println("return to training!");
+					luke = new Luke(250,485); 
+
 			}
+			
+		for(Ending obj4 : row11) {
+			if(obj4.coolided(luke)) {
+				System.out.println("Mission Accomplished!");
+				win.paint(g);
+				luke(800,800);
+			
+			}
+		
+		
+		}
+		
+		
+		
+		
+			
+			
 		}
 			
 		}
@@ -165,6 +213,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 		} 
+	
+	private Object luke(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+		
+	}
+	
 	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
@@ -192,31 +247,33 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			row1[i] = new OtherStorm( i*150 ,350); 
 		}
 		for(int i = 0; i <row2.length; i++) { 
-			row2[i] = new LOG(i*150, 255); 
+			row2[i] = new LOG(i*150, 295); 
 		
 		}
 		for(int i = 0; i <row4.length; i++) { 
-			row4[i] = new LOG3(i*150, 180); 
-		}
+			row4[i] = new LOG3(i*150, 200);
 		
-		for(int i = 0; i <row8.length; i++) { 
-			row8[i] = new LOG4(i*150, 100); 
 		}
  
 		for(int i = 0; i <row5.length; i++) { 
 			row5[i] = new StormTrooper(i*150, 420); 
 		}
 		for(int i = 0; i <row3.length; i++) { 
-			row3[i] = new FrogLog(i*150, 220); 
+			row3[i] = new FrogLog(i*150, 240); 
 		}
 		for(int i = 0; i <row7.length; i++) { 
-			row7[i] = new OtherFrogLog(i*150, 145);  
+			row7[i] = new OtherFrogLog(i*150, 150);  
 		}
 		for(int i = 0; i <row9.length; i++) { 
 			row9[i] = new DROID(i*150, 100); 
 		}
 		for(int i = 0; i <row10.length; i++) { 
 			row10[i] = new DROID2(i*150, 100); 
+		}
+		
+		for(int i = 0; i <row11.length; i++) { 
+			row11[i] = new Ending(i*150, 0);
+		
 		}
 		
 		
@@ -238,7 +295,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -284,9 +341,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		} 
 		
 		if(arg0.getKeyCode()==65){ 
-			luke.move(1);
+			luke.move(2);
 		}else if(arg0.getKeyCode()==68){ 
-			luke.move(0);
+			luke.move(3);
 			
 		}
 		

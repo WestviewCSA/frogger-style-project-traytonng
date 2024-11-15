@@ -89,8 +89,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g);
 		}
 		
-		for(LOG obj : row2) { 
-			obj.paint(g); 
+		for(LOG obj1 : row2) { 
+			obj1.paint(g); 
 		}
 		
 		for(LOG3 obj : row4) { 
@@ -106,7 +106,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(FrogLog obj6 : row3) { 
 			obj6.paint(g);
-			
+						
 		} 
 		
 		for(DROID obj : row9) {
@@ -123,18 +123,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 		
-		//boolean riding = false; 
+		//boolean riding1 = false; 
 		//for (FrogLog obj6: row3) { 
-			
 			//if(obj6.coolided(luke)) {
 			//	luke.setVx(obj6.v);
-			//	riding = true; 
+			//	riding1 = true; 
 			//	break;
-		//	}
+			//}
 		
 		
-	//	if(!riding && luke.y()) < 300) {
-	//	riding = false; 
+	//	if(!riding1 && luke.y()) < 300) {
+	//	riding1 = false; 
 		//	luke.setVx(0); 
 		//	luke.x = 250;
 		//	luke.y = 485; 
@@ -148,26 +147,54 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		 * Collision detection 
 		 */
 		
+	//Log 1 y = 215
 		
+	//Log 2 y = 170
+		
+	//2nd FrogLog y = 125
+		
+		
+		
+		
+		
+		
+
+		boolean riding2 = false;
+		for(FrogLog obj6 : row3) {	
+			if(obj6.coolided(luke)){
+				luke.setVx(-2);
+				riding2 = true; 
+				break;
+	} 
+		if(!riding2 && luke.y < 215) {
+			//riding2 =false;
+			luke.setVx(0);
+			luke.x = 250;
+			luke.y = 485;
+		}
+		
+		
+		
+	}
 		for(StormTrooper obj : row5) { 
 			
 		if(obj.coolided(luke)) { 
 			System.out.println("Skywalker spotted!");
-				luke = new Luke(250,485); 
+				//luke = new Luke(250,485); 
 		}
 		
 		for(OtherStorm obj1 : row1) {
 		
 		if(obj1.coolided(luke)) {
 			System.out.println("Skywalker spotted!"); 
-				luke = new Luke(250,485); 
+				//luke = new Luke(250,485); 
 
 		}
 		
 		for(DROID obj2 : row9) {
 			if(obj2.coolided(luke)) {
-				System.out.println("return to training!");
-					luke = new Luke(250,485); 
+			System.out.println("return to training!");
+			//	luke = new Luke(250,485); 
 
 		
 			}
@@ -175,7 +202,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(DROID2 obj3 : row10) { 
 			if(obj3.coolided(luke)) {
 				System.out.println("return to training!");
-					luke = new Luke(250,485); 
+				//	luke = new Luke(250,485); 
 
 			}
 			
@@ -186,6 +213,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				luke(800,800);
 			
 			}
+			
+			
 		
 		
 		}
@@ -295,6 +324,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		System.out.println(luke.getX());
+		System.out.println(luke.getY());
 
 	}
 
@@ -354,7 +385,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

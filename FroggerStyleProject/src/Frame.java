@@ -25,20 +25,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//for any debugging code we add 
 	public static boolean debugging = true; 
 	
-	
-	
 	//Timer related variables
 	int waveTimer = 5; //each wave of enemies is 20s
 	long ellapseTime = 0;
 	Font timeFont = new Font("Courier", Font.BOLD, 70);
 	int level = 0;
 	
-	
 	Font myFont = new Font("Courier", Font.BOLD, 40);
 	SimpleAudioPlayer backgroundMusic = new SimpleAudioPlayer("scifi.wav", false);
 //	Music soundBang = new Music("bang.wav", false);
 //	Music soundHaha = new Music("haha.wav", false);
-	
 	
 	Background Background = new Background(0,0); 
 	Luke Vader = new Luke(100,200); 
@@ -53,7 +49,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DROID2 droid2 = new DROID2(100,200);
 	Ending bush = new Ending(0,0);
 	WinScreen win = new WinScreen(0,0);
-
 	
 	// a row of LukeScrolling Object
 	OtherStorm[] row1 = new OtherStorm[10];
@@ -67,17 +62,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DROID2[] row10 = new DROID2[1]; 
 	Ending[] row11 = new Ending[1]; 
 
-
-	
-	
 	//frame width/height
 	int width = 600;
 	int height = 600;
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		
-		
+			
 		Background.paint(g);
 		log.paint(g);
 		bush.paint(g);
@@ -131,7 +122,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			//	break;
 			//}
 		
-		
 	//	if(!riding1 && luke.y()) < 300) {
 	//	riding1 = false; 
 		//	luke.setVx(0); 
@@ -142,7 +132,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		//} 
 		
-		
 		/*
 		 * Collision detection 
 		 */
@@ -152,17 +141,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//Log 2 y = 170
 		
 	//2nd FrogLog y = 125
-		
-		
-		
-		
-		
-		
 
 		boolean riding2 = false;
 		for(FrogLog obj6 : row3) {	
 			if(obj6.coolided(luke)){
-				luke.setVx(-2);
+				luke.setVx(obj6.vx);
 				riding2 = true; 
 				break;
 	} 
@@ -171,10 +154,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			luke.setVx(0);
 			luke.x = 250;
 			luke.y = 485;
-		}
+		}	
 		
-		
-		
+
 	}
 		for(StormTrooper obj : row5) { 
 			
@@ -275,34 +257,37 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i < row1.length; i++) { 
 			row1[i] = new OtherStorm( i*150 ,350); 
 		}
+		
 		for(int i = 0; i <row2.length; i++) { 
 			row2[i] = new LOG(i*150, 295); 
-		
 		}
+		
 		for(int i = 0; i <row4.length; i++) { 
 			row4[i] = new LOG3(i*150, 200);
-		
 		}
- 
+		
 		for(int i = 0; i <row5.length; i++) { 
 			row5[i] = new StormTrooper(i*150, 420); 
 		}
+		
 		for(int i = 0; i <row3.length; i++) { 
 			row3[i] = new FrogLog(i*150, 240); 
 		}
+		
 		for(int i = 0; i <row7.length; i++) { 
 			row7[i] = new OtherFrogLog(i*150, 150);  
 		}
+		
 		for(int i = 0; i <row9.length; i++) { 
 			row9[i] = new DROID(i*150, 100); 
 		}
+		
 		for(int i = 0; i <row10.length; i++) { 
 			row10[i] = new DROID2(i*150, 100); 
 		}
 		
 		for(int i = 0; i <row11.length; i++) { 
 			row11[i] = new Ending(i*150, 0);
-		
 		}
 		
 		

@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -49,15 +50,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DROID2 droid2 = new DROID2(100,200);
 	Ending bush = new Ending(0,0);
 	WinScreen win = new WinScreen(0,0);
+	GAMEOVER lose = new GAMEOVER(0,0);
 	
 	// a row of LukeScrolling Object
 	OtherStorm[] row1 = new OtherStorm[10];
+	
+	//Lives
+	ArrayList<OtherStorm> row1List = new ArrayList<OtherStorm>();	
+	ArrayList<Lives> lives = new ArrayList<Lives>();
+	
 	LOG[] row2 = new LOG[5];
 	FrogLog[] row3 = new FrogLog[2]; 
 	LOG3[] row4 = new LOG3[4]; 
 	StormTrooper[] row5 = new StormTrooper[10]; 
 	LOG3[] row6 = new LOG3[3]; 
-	OtherFrogLog[] row7 = new OtherFrogLog[1]; 
+	OtherFrogLog[] row7 = new OtherFrogLog[2]; 
 	DROID[] row9 = new DROID[1]; 
 	DROID2[] row10 = new DROID2[1]; 
 	Ending[] row11 = new Ending[1]; 
@@ -72,11 +79,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		Background.paint(g);
 		log.paint(g);
 		bush.paint(g);
+		luke.paint(g);
 
 		//have the row1 objects paint on the screen!!!!!!
 		//for each obj in row1 
 		
 		for(OtherStorm obj : row1) { 
+			obj.paint(g);
+		}
+		
+		for(OtherStorm obj: row1List) {//for every ghost obj in r1 list
 			obj.paint(g);
 		}
 		
@@ -111,72 +123,111 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(Ending obj : row11) {
 			obj.paint(g);
+		
 		}
 		
+		//for(int i = 0; i < 6; i++){
+		//	this.lives.add(new Lives(i*40, 10));
+				
+		//}
+	//}
+		//	public void resetLives() {
+				
+		//	if(luke.coolided()) {
+			//	luke.setVx(0);
+			//	luke.x = 250;
+			//	luke.y = 485;
+		//if(lives.size() > 0) {
+		//	lives.remove(lives.size()-1);
 		
-		//boolean riding1 = false; 
-		//for (FrogLog obj6: row3) { 
-			//if(obj6.coolided(luke)) {
-			//	luke.setVx(obj6.v);
-			//	riding1 = true; 
-			//	break;
-			//}
 		
-	//	if(!riding1 && luke.y()) < 300) {
-	//	riding1 = false; 
-		//	luke.setVx(0); 
-		//	luke.x = 250;
-		//	luke.y = 485; 
-			//IF ! riding any luke is in the mist area 
-			//rest back to start 	
-		
-		//} 
-		
-		/*
-		 * Collision detection 
-		 */
-		
-	//Log 1 y = 215
-		
-	//Log 2 y = 170
-		
-	//2nd FrogLog y = 125
-
+//	}
+			
+			boolean riding1 = false;
+			for(LOG obj1 : row2) {	
+				if(obj1.coolided(luke)){
+					luke.setVx(obj1.vx);
+					riding1 = true; 
+					break;
+						
+			}else if(!riding1 && luke.getY() < -30){
+				luke.setX(250);
+				luke.setY(485);
+				luke.setVx(0);			
+			}
+			
 		boolean riding2 = false;
-		for(FrogLog obj6 : row3) {	
-			if(obj6.coolided(luke)){
-				luke.setVx(obj6.vx);
+		for(FrogLog obj61 : row3) {	
+			if(obj61.coolided(luke)){
+				luke.setVx(obj61.vx);
 				riding2 = true; 
 				break;
-	} 
-		if(!riding2 && luke.y < 215) {
-			//riding2 =false;
+				
+		}else if(!riding2 && luke.getY() < -30){
+			luke.setX(250);
+			luke.setY(485);
 			luke.setVx(0);
-			luke.x = 250;
-			luke.y = 485;
-		}	
-		
-
-	}
-		for(StormTrooper obj : row5) { 
+		}
 			
-		if(obj.coolided(luke)) { 
+		
+		boolean	 riding3 = false;
+			for(LOG3 obj10 : row4) {	
+				if(obj10.coolided(luke)){
+					luke.setVx(obj10.vx);
+					riding3 = true; 
+					break;
+						
+			}else if(!riding3 && luke.getY() < -30){ //prob
+				luke.setX(250);
+				luke.setY(485);
+				luke.setVx(0);
+				
+			}
+			boolean riding4 = false;
+			for(OtherFrogLog obj11 : row7) {	
+				if(obj11.coolided(luke)){
+					luke.setVx(obj11.vx);
+					riding4 = true; 
+					break;
+						
+			}else if(!riding4 && luke.getY() < -30){ //prob
+				luke.setX(250);
+				luke.setY(485);
+				luke.setVx(0);
+				
+			
+		}
+				
+			}
+			}
+		}
+			
+		for(StormTrooper obj11 : row5) { 
+			
+		if(obj11.coolided(luke)) { 
 			System.out.println("Skywalker spotted!");
-				//luke = new Luke(250,485); 
+				luke = new Luke(250,485); 
+				lose.paint(g);
+
 		}
 		
-		for(OtherStorm obj1 : row1) {
+		for(OtherStorm obj9 : row1) {
 		
-		if(obj1.coolided(luke)) {
+		if(obj9.coolided(luke)) {
 			System.out.println("Skywalker spotted!"); 
-				//luke = new Luke(250,485); 
+				luke = new Luke(250,485); 
+				lose.paint(g);
+
 
 		}
 		
 		for(DROID obj2 : row9) {
 			if(obj2.coolided(luke)) {
 			System.out.println("return to training!");
-			//	luke = new Luke(250,485); 
+				luke = new Luke(250,485); 
+				System.out.println("explosion");
+				lose.paint(g);
+
 
 		
 			}
@@ -184,47 +235,32 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(DROID2 obj3 : row10) { 
 			if(obj3.coolided(luke)) {
 				System.out.println("return to training!");
-				//	luke = new Luke(250,485); 
+				luke = new Luke(250,485); 
+				lose.paint(g);
+
 
 			}
 			
 		for(Ending obj4 : row11) {
 			if(obj4.coolided(luke)) {
 				System.out.println("Mission Accomplished!");
-				win.paint(g);
-				luke(800,800);
-			
+				lose.paint(g);
 			}
-			
-			
-		
+		}
+		}
 		
 		}
 		
-		
-		
-		
-			
-			
 		}
-			
+		}
+		}
 		}
 		
-		
-
-		}
-		
+			
 		
 		//paint the other objects on the screen
-		
-		luke.paint(g);
 
-		
-		
-		}
-		
-		} 
-	
+
 	private Object luke(int i, int j) {
 		// TODO Auto-generated method stub
 		return null;
@@ -271,7 +307,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 		for(int i = 0; i <row3.length; i++) { 
-			row3[i] = new FrogLog(i*150, 240); 
+			row3[i] = new FrogLog(i*150, 245); 
 		}
 		
 		for(int i = 0; i <row7.length; i++) { 
@@ -289,6 +325,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i <row11.length; i++) { 
 			row11[i] = new Ending(i*150, 0);
 		}
+		
+		for(int i = 0; i < 10; i++) {
+			//run body 10x 
+			this.row1List.add(new OtherStorm(i*150,350));
+		}
+		
+		
+		
+		
 		
 		
 		//the cursor image must be outside of the src folder
